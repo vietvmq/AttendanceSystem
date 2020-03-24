@@ -19,6 +19,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  scoped_model: ^1.0.1 #import 23/3/2020
+  rxdart: ^0.23.1 #import 23/3/2020
   google_fonts: ^0.3.10
   flutter_custom_clippers: ^1.1.0
   qrcode: ^1.0.4

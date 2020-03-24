@@ -9,7 +9,7 @@ class FloatingButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       isExtended: true,
-      child: Icon(Icons.camera, color: Colors.white, size: 40,),
+      child: Icon(Icons.camera_alt, color: Colors.white, size: 35,),
       onPressed: () {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) => QRView()));
       },
@@ -66,23 +66,6 @@ class _QRViewPageState extends State<QRView> {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-//        FlatButton.icon(
-//          icon: Icon(
-//            Icons.pause,
-//            color: Colors.white,
-//          ),
-//          shape: RoundedRectangleBorder(
-//            borderRadius: BorderRadius.circular(10.0),
-//            side: BorderSide(width: 1.0, color: Colors.white),
-//          ),
-//          onPressed: () {
-//            _captureController.pause();
-//          },
-//          label: Text(
-//            'Tạm dừng',
-//            style: TextStyle(color: Colors.white),
-//          ),
-//        ),
         FlatButton.icon(
           icon: iconFlash,
           shape: RoundedRectangleBorder(

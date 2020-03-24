@@ -62,17 +62,17 @@ class DrawerUser extends StatelessWidget {
         ),
         currentAccountPicture: CircleAvatar(
           child: FlutterLogo(
-            size: 42,
+            size: 50,
           ),
           backgroundColor: Colors.white,
         ),
         accountName: Text(
           "Nguyễn Văn Anh",
-          style: TextStyle(fontSize: 18),
+          style: TextStyle(fontSize: 19),
         ),
         accountEmail: Text(
           "Sinh viên",
-          style: TextStyle(fontSize: 13),
+          style: TextStyle(fontSize: 15),
         ),
       ),
     );

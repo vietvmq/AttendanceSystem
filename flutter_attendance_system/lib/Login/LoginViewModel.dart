@@ -16,26 +16,32 @@ class LoginScreenModel extends Model {
 
   var passValidation = StreamTransformer<String, String>.fromHandlers(
       handleData: (pass, sink) {
-        sink.add(Vadidation.validateEmail(pass));
+        sink.add(Vadidation.validatePass(pass));
       });
-  Stream<String> get emailStream => _emailSubject.stream.transform(emailValidation).skip(1);
+  Stream<String> get emailStream => _emailSubject.stream.transform(emailValidation).skip(2);
   Sink<String> get emailSink => _emailSubject.sink;
 
-  Stream<String> get passStream => _passSubject.stream.transform(passValidation).skip(1);
+  Stream<String> get passStream => _passSubject.stream.transform(passValidation).skip(2);
   Sink<String> get passSink => _passSubject.sink;
 
   Stream<bool> get btnStream => _btnSubject.stream;
   Sink<bool> get btnSink => _btnSubject.sink;
 
-  SignInModel() {
+  LoginScreenModel() {
     Rx.combineLatest2(_emailSubject, _passSubject,(email,pass){
       return Vadidation.validatePass(pass) == null && Vadidation.validateEmail(email) == null;
     }).listen((enable){
       btnSink.add(enable);
     });
   }
+  dispose(){
+    _emailSubject.close();
+    _passSubject.close();
+    _btnSubject.close();
+  }
 
 }
+
 
 class Vadidation {
   static String validatePass(String pass){

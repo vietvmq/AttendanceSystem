@@ -17,21 +17,22 @@ class EventViewItem extends StatelessWidget {
         height: 130,
         child: Card(
           margin: const EdgeInsets.all(5.0),
-          elevation: 1.0,
+          elevation: 5.0,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           child: Row(
             children: <Widget>[
               Container(
-                width: 100,
-                height: 100,
+                width: 130,
+                height: 130,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(10.0),
-                      bottomLeft: Radius.circular(10.0)),
-                  //border: Border.all(width: 0.3)
-                ),
-                child: Image(
-                  image: AssetImage('images/file.png'),
+                      bottomLeft: Radius.circular(10.0)
+                  ),
+                  image: DecorationImage(
+                    image: NetworkImage("https://link.fpo.vn/hinhdaihoi"),
+                    fit: BoxFit.fill
+                  )
                 ),
               ),
               Flexible(
@@ -44,7 +45,7 @@ class EventViewItem extends StatelessWidget {
                       const SizedBox(height: 10,),
                       Container(
                         child: Text(
-                          "Sự kiện ăn nhậu  $index",
+                          "Đại hội Mặt trận Tổ quốc Việt Nam",
                           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                           overflow: TextOverflow.fade,
                           softWrap: true,

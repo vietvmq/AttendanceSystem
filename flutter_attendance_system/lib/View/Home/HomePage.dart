@@ -15,7 +15,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
   int _currentBottomIndex = 0;
   final _pageController = PageController();
 
@@ -25,22 +24,10 @@ class _HomePageState extends State<HomePage> {
         icon: Icon(Icons.home),
         title: Text("Trang chủ"),
       ),
-//      BottomNavigationBarItem(
-//        icon: Icon(Icons.location_on),
-//        title: Text("Vị trí"),
-//      ),
-//      BottomNavigationBarItem(
-//        icon: Icon(Icons.assignment),
-//        title: Text("Tài liệu"),
-//      ),
       BottomNavigationBarItem(
         icon: Icon(Icons.notifications),
         title: Text("Thông báo"),
       ),
-//      BottomNavigationBarItem(
-//        icon: Icon(Icons.calendar_today),
-//        title: Text("Lịch"),
-//      ),
     ];
   }
 
@@ -65,23 +52,20 @@ class _HomePageState extends State<HomePage> {
   void bottomTapped(int index) {
     setState(() {
       _currentBottomIndex = index;
-      _pageController.animateToPage(index, duration: Duration(milliseconds: 2), curve: Curves.easeIn);
+      _pageController.animateToPage(index, duration: Duration(seconds: 1), curve: Curves.fastLinearToSlowEaseIn);
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
       appBar: AppBar(
-        title: Row(
-          children: <Widget>[
-            const SizedBox(width: 55,),
-            Text(
-              this.widget.title,
-              style: GoogleFonts.lobster(),
-            ),
-          ],
+        title: Container(
+          margin: const EdgeInsets.only(left: 9.0),
+          child: Text(
+            this.widget.title,
+            style: GoogleFonts.lobster(fontSize: 30),
+          ),
         ),
         flexibleSpace: GradientBar(),
         elevation: 0,
@@ -101,3 +85,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+

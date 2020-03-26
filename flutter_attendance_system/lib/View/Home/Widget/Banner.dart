@@ -39,7 +39,10 @@ class BannerEvent extends StatelessWidget {
 //                            fit: BoxFit.cover,
 //                          ),
                 ),
-                child: FlutterLogo(colors: Colors.deepOrange),
+                child: Image.asset(
+                  "images/daihoi.jpg",
+                  fit: BoxFit.cover,
+                ),
               );
             },
           ),

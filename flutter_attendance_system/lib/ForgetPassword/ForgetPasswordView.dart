@@ -17,9 +17,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
       model: ForgetPasswordViewModel(),
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          title: Center(child: Text('Quên mật khẩu')),
-        ),
+        appBar: AppBar(backgroundColor: Colors.white,elevation: 0,),
         body: ScopedModelDescendant<ForgetPasswordViewModel>(
           builder: (context, child, model){
             return Center(
@@ -28,6 +26,29 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                 child: ListView(
                   shrinkWrap: true,
                   children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Container(
+                        height: 140,
+                        width: 140,
+                        child: Image.asset('images/forgot.png'),
+                      ),
+                    ),
+                    SizedBox(height: 20,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Container(
+                        child: Center(child: Text('Quên mật khẩu', style: TextStyle(fontSize: 28,color: Colors.black),)),
+                      ),
+                    ),
+                    SizedBox(height: 20,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: Container(
+                        child: Center(child: Text('Nhập địa chỉ email để nhận Mã xác thực', style: TextStyle(fontSize: 14, color: Colors.black),)),
+                      ),
+                    ),
+                    SizedBox(height: 20,),
                     Padding(
                       padding: const EdgeInsets.only(left: 10, right: 10),
                       child: VertificationEmailTextField(forgetPasswordViewModel: model,),

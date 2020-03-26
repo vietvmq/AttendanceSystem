@@ -84,7 +84,7 @@ class _VertificationEmailTextFieldState extends State<VertificationEmailTextFiel
            width: 400,
            child: RaisedButton(
              color: Colors.lightBlue,
-             shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
+             shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(50))),
              onPressed: snapshot.data == true ? () {
                Navigator.of(context).push(MaterialPageRoute(builder: (context) => PinCodeView()));
              } : null,

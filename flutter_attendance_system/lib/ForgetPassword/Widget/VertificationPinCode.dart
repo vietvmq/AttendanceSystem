@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterattendancesystem/ForgetPassword/ForgetPasswordView.dart';
 import 'package:flutterattendancesystem/ForgetPassword/Widget/ResetPassword.dart';
+import 'package:lottie/lottie.dart';
 import 'package:pin_input_text_field/pin_input_text_field.dart';
 import 'package:scoped_model/scoped_model.dart';
 
@@ -48,15 +49,19 @@ class _VertificationTextFieldState extends State<VertificationTextField> {
   }
 }
 
-class VertificationButton extends StatefulWidget {
+class ReSentPinCode extends StatefulWidget {
   @override
-  _VertificationButtonState createState() => _VertificationButtonState();
+  _ReSentPinCodeState createState() => _ReSentPinCodeState();
 }
 
-class _VertificationButtonState extends State<VertificationButton> {
+class _ReSentPinCodeState extends State<ReSentPinCode> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: FlatButton(
+        child: Text('Gửi lại mã xác thực', style: TextStyle(fontSize: 15,decoration: TextDecoration.underline),),
+      ),
+    );
   }
 }
 
@@ -74,9 +79,7 @@ class _PinCodeViewState extends State<PinCodeView> {
       model: ForgetPasswordViewModel(),
       child: Scaffold(
           backgroundColor: Colors.white,
-          appBar: AppBar(
-            title: Container(margin: EdgeInsets.only(left: widthSrceen / 7.3),child: Text('Quên mật khẩu')),
-          ),
+          appBar: AppBar(backgroundColor: Colors.white,elevation: 0,iconTheme: IconThemeData(color: Colors.black),),
           body: ScopedModelDescendant<ForgetPasswordViewModel>(
             builder: (context, child, model){
               return Center(
@@ -87,10 +90,33 @@ class _PinCodeViewState extends State<PinCodeView> {
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: Container(
+                          height: 140,
+                          width: 140,
+                          child: Lottie.asset('images/verti.json'),
+                        ),
+                      ),
+                      SizedBox(height: 20,),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: Container(
+                          child: Center(child: Text('Xác thực',style: TextStyle(fontSize: 28, color: Colors.black),)),
+                        ),
+                      ),
+                      SizedBox(height: 20,),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
+                        child: Container(
+                          child: Center(child: Text('Nhập mã xác thực bạn nhận được vào bên dưới',style: TextStyle(fontSize: 14),)),
+                        ),
+                      ),
+                      SizedBox(height: 20,),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10, right: 10),
                         child: VertificationTextField(forgetPasswordViewModel: model,),
                       ),
                       SizedBox(height: 10,),
-                      VertificationButton()
+                      ReSentPinCode()
                     ],
                   ),
                 ),

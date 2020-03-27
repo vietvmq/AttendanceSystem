@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterattendancesystem/Login/LoginView.dart';
 import 'View/Home/HomePage.dart';
 
 void main() => runApp(MyApp());
@@ -11,7 +12,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(title: 'Attendance System'),
+      home: LoginScreen(),
+      initialRoute: '/',
+      routes: {
+        '/login': (context) => LoginScreen(),
+        '/home': (context) => HomePage(title: "Attendance Systems",),
+      },
       debugShowCheckedModeBanner: false,
     );
   }

@@ -10,6 +10,7 @@ class BannerEvent extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Container(
       height: MediaQuery.of(context).size.height / 4,
+      margin: const EdgeInsets.only(bottom: 10.0),
       child: Stack(
         children: <Widget>[
           ClipPath(
@@ -29,19 +30,15 @@ class BannerEvent extends StatelessWidget {
             itemCount: 3,
             itemBuilder: (BuildContext context, int index) {
               return Container(
-                margin: const EdgeInsets.all(16.0),
+                margin: const EdgeInsets.all(15.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
-//                          image: DecorationImage(
-//                            image: CachedNetworkImageProvider(
-//                              "https://nld.mediacdn.vn/2019/9/19/7076484227862771213915708512880877255000064n-1568861748575239539590.jpg"
-//                            ),
-//                            fit: BoxFit.cover,
-//                          ),
-                ),
-                child: Image.asset(
-                  "images/daihoi.jpg",
-                  fit: BoxFit.cover,
+                          image: DecorationImage(
+                            image: CachedNetworkImageProvider(
+                              "https://link.fpo.vn/hinhdaihoi"
+                            ),
+                            fit: BoxFit.cover,
+                          ),
                 ),
               );
             },

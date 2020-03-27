@@ -43,7 +43,9 @@ class DrawerUser extends StatelessWidget {
                 ListTile(
                   title: Text("Đăng xuất", style: GoogleFonts.roboto(fontSize: 17),),
                   leading: Icon(Icons.power_settings_new, size: 25,),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).pushNamedAndRemoveUntil('/login', (route) => false);
+                  },
                 ),
               ],
             ),

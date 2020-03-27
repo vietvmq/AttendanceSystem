@@ -119,7 +119,7 @@ class _ResetButtonState extends State<ResetButton> {
               'Đặt lại mật khẩu',
               style: TextStyle(color: Colors.white),
             ),
-            onPressed: snapshot.data ? () {} : null,
+            onPressed: snapshot.data == true ? () {} : null,
           ),
         );
       }

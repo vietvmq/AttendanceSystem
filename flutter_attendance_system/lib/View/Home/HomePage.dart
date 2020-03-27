@@ -4,7 +4,7 @@ import 'package:flutterattendancesystem/View/Home/Widget/ListPageView.dart';
 import 'package:flutterattendancesystem/View/Home/Widget/DrawerMenu.dart';
 import 'package:flutterattendancesystem/View/Home/Widget/FloatingButton.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'Widget/SeatDiagram.dart';
+import '../Event/Widget/SeatDiagram.dart';
 
 class HomePage extends StatefulWidget {
   final title;
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
 
   Widget _buildPageView() {
     return PageView(
-      physics: NeverScrollableScrollPhysics(),
+      //physics: NeverScrollableScrollPhysics(),
       controller: _pageController,
       onPageChanged: (index) {
         setState(() {
@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
   void bottomTapped(int index) {
     setState(() {
       _currentBottomIndex = index;
-      _pageController.animateToPage(index, duration: Duration(seconds: 1), curve: Curves.fastLinearToSlowEaseIn);
+      _pageController.animateToPage(index, duration: Duration(milliseconds: 300), curve: Curves.easeIn);
     });
   }
 
@@ -73,7 +73,7 @@ class _HomePageState extends State<HomePage> {
       drawer: DrawerUser(),
       body: _buildPageView(),
       bottomNavigationBar: BottomNavigationBar(
-        iconSize: 30,
+        iconSize: 27,
         //unselectedItemColor: Colors.grey.shade400,
         onTap: (index) => bottomTapped(index),
         selectedItemColor: Colors.deepOrange,

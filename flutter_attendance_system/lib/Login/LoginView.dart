@@ -35,8 +35,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 100,
                         width: 100,
                         margin: const EdgeInsets.only(bottom: 14, left: 10, right: 10),
-                        decoration: BoxDecoration(border: Border.all()),
-                        child: Center(child: Text('Logo here')),
+//                        decoration: BoxDecoration(border: Border.all()),
+                        child: Center(child: FlutterLogo(size: 100,)),
                       ),
                     ),
                     Padding(

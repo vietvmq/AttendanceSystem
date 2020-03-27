@@ -21,6 +21,7 @@ class _EmailTextFieldState extends State<EmailTextField> {
     emailController.addListener((){
       widget.loginScreenModel.emailSink.add(emailController.text);
     });
+    emailController.text = "nhoxsieuquay@gmail.com";
   }
 
   @override
@@ -71,6 +72,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
     passController.addListener((){
       widget.loginScreenModel.passSink.add(passController.text);
     });
+    passController.text = "123456";
   }
 
   @override

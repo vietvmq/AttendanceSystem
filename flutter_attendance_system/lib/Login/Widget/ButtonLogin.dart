@@ -24,6 +24,7 @@ class _ButtonLoginState extends State<ButtonLogin> {
             shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(8))),
             child: Text('Đăng nhập', style: TextStyle(fontSize: 16, color: Colors.white),),
             onPressed: snapshot.data == true ? (){
+              Navigator.of(context).pushReplacementNamed('/home');
             } : null,
           ),
         );

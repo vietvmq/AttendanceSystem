@@ -59,6 +59,7 @@ class _ReSentPinCodeState extends State<ReSentPinCode> {
   Widget build(BuildContext context) {
     return Container(
       child: FlatButton(
+        onPressed: () {},
         child: Text('Gửi lại mã xác thực', style: TextStyle(fontSize: 15,decoration: TextDecoration.underline),),
       ),
     );

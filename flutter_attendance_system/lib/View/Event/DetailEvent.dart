@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutterattendancesystem/Public_Widget/ExpandableText.dart';
+import 'package:flutterattendancesystem/View/Event/Widget/PDF/PDFView.dart';
+import 'package:flutterattendancesystem/View/Event/Widget/SeatDiagram.dart';
+import 'package:flutterattendancesystem/View/Event/Widget/Timeline.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,9 +23,30 @@ class DetailEvent extends StatefulWidget {
 }
 
 class _DetailEventState extends State<DetailEvent> {
+
+  void pushPageByIndex(int index) {
+    switch(index){
+      case 0: {
+        //Navigator.of(context).push(MaterialPageRoute(builder: (context) => PDFView()));
+        break;
+      }
+      case 1: {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => SeatScreen()));
+        break;
+      }
+      case 2: {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => TimelinePage(title: "",)));
+        break;
+      }
+    }
+  }
+
   Widget _customIconButton(
       IconData icon, String label, Color color, int index) {
     return GestureDetector(
+      onTap: () {
+        pushPageByIndex(index);
+      },
       child: Container(
         height: 86,
         margin: const EdgeInsets.all(2.0),
@@ -129,11 +153,11 @@ class _DetailEventState extends State<DetailEvent> {
               child: Column(
                 children: <Widget>[
                   Container(
-                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
                     child: Text(
                       "Thời gian dự kiến",
                       style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                          fontSize: 20.0, fontWeight: FontWeight.bold,),
                     ),
                     alignment: Alignment.centerLeft,
                   ),
@@ -179,11 +203,11 @@ class _DetailEventState extends State<DetailEvent> {
                 children: <Widget>[
                   Container(
                     alignment: Alignment.centerLeft,
-                    padding: const EdgeInsets.all(10.0),
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 5),
                     child: Text(
                       "Thông tin sự kiện",
                       style: TextStyle(
-                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                          fontSize: 20.0, fontWeight: FontWeight.bold,),
                     ),
                   ),
                   Container(

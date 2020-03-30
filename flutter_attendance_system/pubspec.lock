@@ -89,7 +89,7 @@ packages:
       name: flutter_advanced_networkimage
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0"
+    version: "0.5.0"
   flutter_cache_manager:
     dependency: transitive
     description:
@@ -256,13 +256,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
-  pdf_viewer_jk:
-    dependency: "direct main"
-    description:
-      name: pdf_viewer_jk
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   pedantic:
     dependency: transitive
     description:

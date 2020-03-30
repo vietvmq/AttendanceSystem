@@ -29,7 +29,7 @@ dependencies:
   flutter_swiper: ^1.1.6
   cached_network_image: ^2.0.0
   lottie: ^0.3.2 #import 26/3/2020
-
+  pin_input_text_field: ^3.0.1 #import 27/3/2020
   font_awesome_flutter: ^8.7.0
   path_provider: ^1.6.5
   timeline_list: ^0.0.5

@@ -4,128 +4,109 @@ import 'package:flutterattendancesystem/ForgetPassword/ForgetPasswordView.dart';
 import 'package:flutterattendancesystem/ForgetPassword/ForgetPasswordViewModel.dart';
 import 'package:scoped_model/scoped_model.dart';
 
-class ResetPasswordTextField extends StatefulWidget {
-
-  ForgetPasswordViewModel forgetPasswordViewModel;
-
-  ResetPasswordTextField({Key key,this.forgetPasswordViewModel}) : super(key: key);
-
-  @override
-  _ResetPasswordTextFieldState createState() => _ResetPasswordTextFieldState();
-}
-
-class _ResetPasswordTextFieldState extends State<ResetPasswordTextField> {
-
-  TextEditingController passController = new TextEditingController();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    passController.addListener((){
-      widget.forgetPasswordViewModel.passSink.add(passController.text);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: StreamBuilder<String>(
-        stream: widget.forgetPasswordViewModel.passStream,
-        builder: (context, snapshot) {
-          return TextFormField(
-            controller: passController,
-            autofocus: true,
-            obscureText: true,
-            textInputAction: TextInputAction.next,
-            decoration: InputDecoration(
-                labelText: 'Mật khẩu mới', border: OutlineInputBorder(),errorText: snapshot.data),
-          );
-        }
-      ),
-    );
-  }
-}
-
-class ValidationPassword extends StatefulWidget {
-
-  ForgetPasswordViewModel forgetPasswordViewModel ;
-
-  ValidationPassword({Key key, this.forgetPasswordViewModel}) : super(key: key);
-
-  @override
-  _ValidationPasswordState createState() => _ValidationPasswordState();
-}
-
-class _ValidationPasswordState extends State<ValidationPassword> {
-
-  TextEditingController confirmController = new TextEditingController();
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    confirmController.addListener((){
-      widget.forgetPasswordViewModel.confirmPassSink.add(confirmController.text);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: StreamBuilder<String>(
-        stream: widget.forgetPasswordViewModel.confirmPassStream,
-        builder: (context, snapshot) {
-          return TextFormField(
-            controller: confirmController,
-            obscureText: true,
-            textInputAction: TextInputAction.next,
-            decoration: InputDecoration(
-                labelText: 'Nhập lại mật khẩu',
-                border: OutlineInputBorder(),
-              errorText: snapshot.data
-               ),
-          );
-        }
-      ),
-    );
-  }
-}
-
-class ResetButton extends StatefulWidget {
-
-  ForgetPasswordViewModel forgetPasswordViewModel;
-
-  ResetButton({Key key, this.forgetPasswordViewModel}) : super(key: key);
-
-  @override
-  _ResetButtonState createState() => _ResetButtonState();
-}
-
-class _ResetButtonState extends State<ResetButton> {
-  @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<bool>(
-      stream: widget.forgetPasswordViewModel.btnConfirmStream,
-      builder: (context, snapshot) {
-        return Container(
-          height: 48,
-          width: 181,
-          child: RaisedButton(
-            color: Colors.lightBlueAccent,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(50))),
-            child: Text(
-              'Đặt lại mật khẩu',
-              style: TextStyle(color: Colors.white),
-            ),
-            onPressed: snapshot.data == true ? () {} : null,
-          ),
-        );
-      }
-    );
-  }
-}
+//class ResetPasswordTextField extends StatefulWidget {
+//  ForgetPasswordViewModel forgetPasswordViewModel;
+//
+//  GlobalKey<FormFieldState> passkey;
+//
+//  ResetPasswordTextField({Key key, this.passkey}) : super(key: key);
+//
+//  @override
+//  _ResetPasswordTextFieldState createState() => _ResetPasswordTextFieldState();
+//}
+//
+//class _ResetPasswordTextFieldState extends State<ResetPasswordTextField> {
+//  TextEditingController passController = new TextEditingController();
+//
+//  @override
+//  Widget build(BuildContext context) {
+//    return Container(
+//        child: TextFormField(
+//          key: widget.passkey,
+//      controller: passController,
+//      autofocus: true,
+//      obscureText: true,
+//      textInputAction: TextInputAction.next,
+//      decoration: InputDecoration(
+//        labelText: 'Mật khẩu mới',
+//        border: OutlineInputBorder(),
+//      ),
+//    ));
+//  }
+//}
+//
+//class ValidationPassword extends StatefulWidget {
+//  ForgetPasswordViewModel forgetPasswordViewModel;
+//
+//  GlobalKey<FormFieldState> passkey;
+//
+//  ValidationPassword({Key key, this.passkey}) : super(key: key);
+//
+//  @override
+//  _ValidationPasswordState createState() => _ValidationPasswordState();
+//}
+//
+//class _ValidationPasswordState extends State<ValidationPassword> {
+//  TextEditingController confirmController = new TextEditingController();
+//
+//  @override
+//  Widget build(BuildContext context) {
+//    return Container(
+//        child: TextFormField(
+//      validator: (confirmation) {
+//        var password = widget.passkey.currentState.value;
+//        print("password is: " + password);
+//        return confirmation == password
+//            ? null
+//            : "Confirm Password should match password";
+//      },
+//      controller: confirmController,
+//      obscureText: true,
+//      textInputAction: TextInputAction.next,
+//      decoration: InputDecoration(
+//        labelText: 'Nhập lại mật khẩu',
+//        border: OutlineInputBorder(),
+//      ),
+//    ));
+//  }
+//}
+//
+//class ResetButton extends StatefulWidget {
+//  ForgetPasswordViewModel forgetPasswordViewModel;
+//
+//  GlobalKey<FormState> passkey = GlobalKey<FormState>();
+//
+//  ResetButton({Key key, this.passkey}) : super(key: key);
+//
+//  @override
+//  _ResetButtonState createState() => _ResetButtonState();
+//}
+//
+//class _ResetButtonState extends State<ResetButton> {
+//  @override
+//  Widget build(BuildContext context) {
+//    return Container(
+//            height: 48,
+//            width: 181,
+//            child: RaisedButton(
+//              color: Colors.lightBlueAccent,
+//              shape: RoundedRectangleBorder(
+//                  borderRadius: BorderRadius.all(Radius.circular(50))),
+//              child: Text(
+//                'Đặt lại mật khẩu',
+//                style: TextStyle(color: Colors.white),
+//              ),
+//              onPressed: (){
+//                if(widget.passkey.currentState.validate())
+//                  {
+//                    Scaffold.of(context)
+//                        .showSnackBar(SnackBar(content: Text('Processing Data')));
+//                  }
+//              },
+//            ),
+//          );
+//  }
+//}
 
 class ResetPasswordView extends StatefulWidget {
   @override
@@ -133,13 +114,17 @@ class ResetPasswordView extends StatefulWidget {
 }
 
 class _ResetPasswordViewState extends State<ResetPasswordView> {
-  GlobalKey<FormFieldState> passKey;
+  GlobalKey<FormFieldState> passKey = GlobalKey<FormFieldState>();
+  final _globalkey = GlobalKey<ScaffoldState>();
+  GlobalKey<FormState> passFormKey = GlobalKey<FormState>();
+
+  TextEditingController passController = TextEditingController();
+  TextEditingController confirmController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     double widthScreen = MediaQuery.of(context).size.width;
-    return ScopedModel(
-      model: ForgetPasswordViewModel(),
-      child: Scaffold(
+    return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -155,68 +140,109 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
               margin: EdgeInsets.only(left: widthScreen / 7.3),
               child: Text('Nhập lại mật khẩu')),
         ),
-        body: ScopedModelDescendant<ForgetPasswordViewModel>(
-          builder: (context, child, model){
-           return Center(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: Container(
-                        height: 140,
-                        width: 140,
-                        child: Image.asset('images/resetpassword.png'),
+        body: Center(
+          child: SingleChildScrollView(
+            child: Form(
+              key: passFormKey,
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: Container(
+                      height: 140,
+                      width: 140,
+                      child: Image.asset('images/resetpassword.png'),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: Container(
+                      child: Text('Nhập mật khẩu mới',
+                          style: TextStyle(fontSize: 28)),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: Container(
+                      child: Center(
+                          child: Text(
+                        'Nhập mật khẩu mới để tiến hành đổi mật khẩu',
+                        style: TextStyle(fontSize: 14, color: Colors.black),
+                      )),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
+                    child: Container(
+                        child: TextFormField(
+                          key: passKey,
+                          controller: passController,
+                          autofocus: true,
+                          obscureText: true,
+                          textInputAction: TextInputAction.next,
+                          decoration: InputDecoration(
+                            labelText: 'Mật khẩu mới',
+                            border: OutlineInputBorder(),
+                          ),
+                        )),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10, right: 10),
+                    child: Container(
+                        child: TextFormField(
+                          validator: (confirmation) {
+                            var password = passKey.currentState.value;
+                            return confirmation == password
+                                ? null
+                                : "Confirm Password should match password";
+                          },
+                          controller: confirmController,
+                          obscureText: true,
+                          textInputAction: TextInputAction.next,
+                          decoration: InputDecoration(
+                            labelText: 'Nhập lại mật khẩu',
+                            border: OutlineInputBorder(),
+                          ),
+                        )),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: Container(
+                    height: 48,
+                    width: 181,
+                    child: RaisedButton(
+                      color: Colors.lightBlueAccent,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(50))),
+                      child: Text(
+                        'Đặt lại mật khẩu',
+                        style: TextStyle(color: Colors.white),
                       ),
+                      onPressed: (){
+                        if(passFormKey.currentState.validate())
+                        {
+                          showDialog(context: context,builder: (BuildContext context) => AlertDialog(content: Text("Đổi mật khẩu thành công"),));
+                        }
+                      },
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: Container(
-                        child:
-                        Text('Nhập mật khẩu mới', style: TextStyle(fontSize: 28)),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: Container(
-                        child: Center(
-                            child: Text(
-                              'Nhập mật khẩu mới để tiến hành đổi mật khẩu',
-                              style: TextStyle(fontSize: 14, color: Colors.black),
-                            )),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
-                      child: ResetPasswordTextField(forgetPasswordViewModel: model,),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: ValidationPassword(forgetPasswordViewModel: model,),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: ResetButton(forgetPasswordViewModel: model,),
-                    )
-                  ],
-                ),
+                  ),
+                )
+                ],
               ),
-            );
-          }
-        ),
-      ),
-    );
+            ),
+          ),
+        ));
   }
 }

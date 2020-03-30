@@ -10,14 +10,20 @@ class PDFView extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<PDFView> {
-  List<String> listDemo = List.generate(3, (index) => "Tai lieu dai hoi $index");
+  List<String> pathAssets = ["DeLy", "III"];
+  List<String> pathURL = [
+    "http://africau.edu/images/default/sample.pdf",
+    "https://expoforest.com.br/wp-content/uploads/2017/05/exemplo.pdf",
+  ];  
+  List<String> listDemo = List.generate(2, (index) => "Tai lieu dai hoi $index");
   PDFDocument document;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    loadFromAsset();
+    loadFromAsset(pathAssets[0]);
+    //loadFromURL(pathURL[0]);
   }
 
   @override
@@ -46,7 +52,9 @@ class _HomeScreenState extends State<PDFView> {
                   height: 100,
                   child: GestureDetector(
                     onTap: () async {
-                      loadFromAsset();
+                      print(index);
+                      loadFromAsset(index < 2 ? pathAssets[index] : pathAssets[index % 2]);
+                      //loadFromURL(index < 2 ? pathAssets[index] : pathAssets[index % 2]);
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) =>
                               InfoScreen(document: document)));
@@ -91,9 +99,12 @@ class _HomeScreenState extends State<PDFView> {
     );
   }
 
-  void loadFromAsset() async {
-    document = await PDFDocument.fromAsset("files/III.pdf");
+  void loadFromAsset(String name) async {
+    document = await PDFDocument.fromAsset("files/${name.toString()}.pdf");
   }
+  // void loadFromURL(String url) async {
+  //   document = await PDFDocument.fromURL(url);
+  // }
 }
 
 

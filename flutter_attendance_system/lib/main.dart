@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutterattendancesystem/ForgetPassword/ForgetPasswordView.dart';
 import 'package:flutterattendancesystem/Login/LoginView.dart';
+import 'Chart/ChartView.dart';
 import 'ForgetPassword/Widget/ResetPassword.dart';
 import 'View/Home/HomePage.dart';
+import 'package:syncfusion_flutter_core/core.dart';
 
-void main() => runApp(MyApp());
+void main(){
+  SyncfusionLicense.registerLicense('NT8mJyc2IWhia31ifWN9YGVoYmF8YGJ8ampqanNiYmlmamlmanMDHmg3ITcyJ2JnYmYTND4yOj99MDw+');
+
+  return runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -14,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ResetPasswordView(),
+      home: LoginScreen(),
       initialRoute: '/',
       routes: {
         '/login': (context) => LoginScreen(),

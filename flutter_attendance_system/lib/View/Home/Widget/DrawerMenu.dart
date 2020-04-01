@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:flutterattendancesystem/Chart/ChartView.dart';
 import 'package:flutterattendancesystem/Public_Widget/GradientColor.dart';
 import 'package:flutterattendancesystem/Public_Widget/OvalRightBorderClipper.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,7 +32,9 @@ class DrawerUser extends StatelessWidget {
                 ListTile(
                   title: Text("Thống kê", style: GoogleFonts.roboto(fontSize: 17),),
                   leading: Icon(Icons.assessment, size: 25,),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChartView()));
+                  },
                 ),
                 Divider(thickness: 1.0,),
                 ListTile(

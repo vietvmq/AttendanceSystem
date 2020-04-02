@@ -15,7 +15,7 @@ class BannerEvent extends StatelessWidget {
         children: <Widget>[
           ClipPath(
             child: Container(
-              height: 150,
+              height: 100,
               decoration: BoxDecoration(
                   gradient: LinearGradient(colors: gradientColor)
               ),
@@ -25,6 +25,8 @@ class BannerEvent extends StatelessWidget {
           Swiper(
             itemWidth: MediaQuery.of(context).size.width,
             itemHeight: MediaQuery.of(context).size.height / 5,
+//            scale: 0.9,
+//            viewportFraction: 0.8,
             layout: SwiperLayout.DEFAULT,
             autoplay: true,
             itemCount: 3,

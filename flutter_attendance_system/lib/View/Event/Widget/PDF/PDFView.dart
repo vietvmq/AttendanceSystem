@@ -1,110 +1,76 @@
+import 'dart:async';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
-
+import 'package:flutter_full_pdf_viewer/flutter_full_pdf_viewer.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'PDFVIewInfo.dart';
 
 class PDFView extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _PDFViewState createState() => _PDFViewState();
 }
 
-class _HomeScreenState extends State<PDFView> {
-  List<String> pathAssets = ["DeLy", "III"];
+class _PDFViewState extends State<PDFView> {
   List<String> pathURL = [
+    "http://www.pdf995.com/samples/pdf.pdf",
     "http://africau.edu/images/default/sample.pdf",
     "https://expoforest.com.br/wp-content/uploads/2017/05/exemplo.pdf",
-  ];  
-  List<String> listDemo = List.generate(2, (index) => "Tai lieu dai hoi $index");
-  PDFDocument document;
+    "https://www.ibm.com/downloads/cas/GJ5QVQ7X",
+    "https://pdfkit.org/docs/guide.pdf",
+  ];
 
-  @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    loadFromAsset(pathAssets[0]);
-    //loadFromURL(pathURL[0]);
   }
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
+  Future<File> createFileOfPdfUrl(String pathUrl) async {
+    final url = pathUrl;
+    final filename = url.substring(url.lastIndexOf("/") + 1);
+    var request = await HttpClient().getUrl(Uri.parse(url));
+    var response = await request.close();
+    var bytes = await consolidateHttpClientResponseBytes(response);
+    String dir = (await getApplicationDocumentsDirectory()).path;
+    File file = new File('$dir/$filename');
+    await file.writeAsBytes(bytes);
+    return file;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Danh sách tài liệu",
-            style: TextStyle(
-              fontSize: 25,
-              color: Colors.white,
-            ),
-          ),
-        ),
-        body: SafeArea(
-          child: ListView.builder(
-              itemCount: listDemo.length,
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+      ),
+      body:ListView.separated(
+              separatorBuilder: (context, index) => Divider(),
+              itemCount: pathURL.length,
               itemBuilder: (context, index) {
-                return Container(
-                  height: 100,
-                  child: GestureDetector(
-                    onTap: () async {
-                      print(index);
-                      loadFromAsset(index < 2 ? pathAssets[index] : pathAssets[index % 2]);
-                      //loadFromURL(index < 2 ? pathAssets[index] : pathAssets[index % 2]);
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) =>
-                              InfoScreen(document: document)));
-                    },
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)),
-                      ),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              border: Border.all(),
-                            ),
-                            padding: const EdgeInsets.only(
-                                top: 10, left: 10, bottom: 10),
-                            child: Image(
-                              image: AssetImage('images/file.png'),
-                            ),
-                          ),
-                          Column(
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.only(top: 10, left: 10),
-                                child: Text(listDemo[index]),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    top: 5, bottom: 10, left: 10),
-                                child: Text('Tài liệu đại hội'),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                return FutureBuilder(
+                  future: createFileOfPdfUrl(pathURL[index]),
+                  builder: (context, snapshot) {
+                    if(snapshot.hasError) {
+                      print(snapshot.error);
+                    }
+                    return !snapshot.hasData
+                        ? Center(child: CircularProgressIndicator(strokeWidth: 2.0,),)
+                        : ListTile(
+                            leading: Icon(Icons.file_download, size: 30,),
+                            title: Text(pathURL[index], overflow: TextOverflow.fade,),
+                            subtitle: Text(snapshot.data.path, overflow: TextOverflow.fade,),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PDFScreen(snapshot.data.path)),
+                              );
+                            },
+                          );
+                  },
                 );
-              }),
-        )
+              },
+            ),
     );
   }
-
-  void loadFromAsset(String name) async {
-    document = await PDFDocument.fromAsset("files/${name.toString()}.pdf");
-  }
-  // void loadFromURL(String url) async {
-  //   document = await PDFDocument.fromURL(url);
-  // }
 }
-
-

@@ -13,11 +13,11 @@ class EventViewItem extends StatelessWidget {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) => DetailEvent(id: this.index)));
       },
       child: Container(
-        margin: const EdgeInsets.all(5.0),
+        margin: const EdgeInsets.all(1.0),
         height: 130,
         child: Card(
           margin: const EdgeInsets.all(5.0),
-          elevation: 5.0,
+          elevation: 1.0,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
           child: Row(
             children: <Widget>[

@@ -1,27 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
+import 'package:flutter_full_pdf_viewer/full_pdf_viewer_scaffold.dart';
 
-class InfoScreen extends StatefulWidget {
-  final PDFDocument document;
-  InfoScreen({Key key, this.document}) : super(key: key);
+class PDFScreen extends StatefulWidget {
+  String pathPDF = "";
+  PDFScreen(this.pathPDF);
 
   @override
-  _InfoScreenState createState() => _InfoScreenState();
+  _PDFScreenState createState() => _PDFScreenState();
 }
 
-class _InfoScreenState extends State<InfoScreen> {
+class _PDFScreenState extends State<PDFScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("file PDF"),
-        ),
-        body: Column(
-          children: <Widget>[
-            Expanded(
-                child: Container(
-                    child: PDFViewer(document: widget.document,)))
-          ],
-        ));
+    return PDFViewerScaffold(
+      appBar: AppBar(
+        title: Text("Document"),
+        elevation: 5.0,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.share),
+            onPressed: () {},
+          ),
+        ],
+      ),
+      path: widget.pathPDF,
+    );
   }
 }

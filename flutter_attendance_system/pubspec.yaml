@@ -14,14 +14,14 @@ description: A new Flutter application.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   scoped_model: ^1.0.1 #import 23/3/2020
   rxdart: ^0.23.1 #import 23/3/2020
-  flutter_plugin_pdf_viewer: ^1.0.7
+#  flutter_plugin_pdf_viewer: ^1.0.7
   google_fonts: ^0.3.10
   flutter_custom_clippers: ^1.1.0
   qrcode: ^1.0.4
@@ -33,8 +33,9 @@ dependencies:
   font_awesome_flutter: ^8.7.0
   path_provider: ^1.6.5
   timeline_list: ^0.0.5
-  flutter_pdfview: ^1.0.1
   syncfusion_flutter_charts: ^18.1.36 #30/3/2020
+  flutter_webview_plugin: ^0.3.10+2
+  flutter_full_pdf_viewer: ^1.0.6
 #  pdf_viewer_jk: ^1.0.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

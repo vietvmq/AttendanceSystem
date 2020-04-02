@@ -8,6 +8,8 @@ import 'package:flutterattendancesystem/View/Event/Widget/Timeline.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'Widget/PDF/PDFVIewInfo.dart';
+
 final String longText =
     """Với chủ đề “Đoàn kết - Dân chủ - Đổi mới - Phát triển”, sáng 19-9, Đại hội đại biểu toàn quốc Mặt trận Tổ quốc Việt Nam lần thứ IX, nhiệm kỳ 2019-2024 khai mạc trọng thể tại Trung tâm Hội nghị Quốc gia, Hà Nội.
 

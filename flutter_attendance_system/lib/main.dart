@@ -17,11 +17,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Attendance System',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: LoginScreen(),
-      initialRoute: '/',
+      //initialRoute: '/',
       routes: {
         '/login': (context) => LoginScreen(),
         '/home': (context) => HomePage(title: "Attendance Systems",),

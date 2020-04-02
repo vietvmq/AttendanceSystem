@@ -46,8 +46,10 @@ class PieChart extends StatelessWidget {
     return SfCircularChart(
       borderColor: Colors.black,
       title: ChartTitle(
-          text: "Bảng thống kê", textStyle: ChartTextStyle(fontSize: 20)),
+          text: "Bảng thống kê số người ở mỗi thành phố", textStyle: ChartTextStyle(fontSize: 20)),
       legend: Legend(
+          alignment: ChartAlignment.center,
+          padding: 10,
           isVisible: true,
           textStyle: ChartTextStyle(fontSize: 17),
           position: LegendPosition.bottom,

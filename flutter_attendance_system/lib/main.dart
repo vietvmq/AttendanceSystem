@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterattendancesystem/Contact/ContactView.dart';
 import 'package:flutterattendancesystem/ForgetPassword/ForgetPasswordView.dart';
 import 'package:flutterattendancesystem/Login/LoginView.dart';
 import 'Chart/ChartView.dart';

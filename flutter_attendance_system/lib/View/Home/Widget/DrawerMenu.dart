@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:flutterattendancesystem/Chart/ChartView.dart';
+import 'package:flutterattendancesystem/Contact/ContactView.dart';
 import 'package:flutterattendancesystem/Public_Widget/GradientColor.dart';
 import 'package:flutterattendancesystem/Public_Widget/OvalRightBorderClipper.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -46,7 +47,9 @@ class DrawerUser extends StatelessWidget {
                 ListTile(
                   title: Text("Liên hệ", style: GoogleFonts.roboto(fontSize: 16),),
                   leading: Icon(Icons.contacts, size: 25,),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ContactView()));
+                  },
                 ),
                 //Divider(thickness: 1.0,),
                 ListTile(

@@ -1,17 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:flutterattendancesystem/View/Event/Widget/Timeline.dart';
 import 'package:qrcode/qrcode.dart';
 import 'package:flutterattendancesystem/Public_Widget/qr_scanner_overlay_shape.dart';
 import 'dart:io';
-
 
 class FloatingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
       isExtended: true,
-      child: Icon(Icons.camera_alt, color: Colors.white, size: 35,),
+      child: Icon(
+        Icons.camera_alt,
+        color: Colors.white,
+        size: 35,
+      ),
       onPressed: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => QRView()));
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => QRView()));
+        showDialog(
+            context: context,
+            builder: (_) => AlertDialog(
+                  content: Text("Tính năng này chỉ quét mã QR tham dự được tạo bởi FPO hoặc chủ sự kiện. Nếu bạn không nhận được mã QR tham dự, hãy liên hệ với họ",textAlign: TextAlign.center,),
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Icon(Icons.warning),
+                  Icon(Icons.warning),
+                  Icon(Icons.warning),
+                  Text("Cảnh báo"),
+                  Icon(Icons.warning),
+                  Icon(Icons.warning),
+                  Icon(Icons.warning),
+                ],
+              ),
+              actions: <Widget>[
+                FlatButton(child: Text("OK", style: TextStyle(fontSize: 20),), onPressed: (){Navigator.of(context).pop();},),
+              ],
+                ));
       },
     );
   }
@@ -21,6 +46,7 @@ class QRView extends StatefulWidget {
   @override
   _QRViewPageState createState() => _QRViewPageState();
 }
+
 class _QRViewPageState extends State<QRView> {
   final _captureController = new QRCaptureController();
   bool _isTorchOn = false;
@@ -43,21 +69,21 @@ class _QRViewPageState extends State<QRView> {
       showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: Text("Thông tin QR"),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
-            ),
-            content: Text("$data"),
-            actions: <Widget>[
-              FlatButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  _captureController.resume();
-                },
-                child: Text("OK", style: TextStyle(color: Colors.blue)),
-              ),
-            ],
-          ));
+                title: Text("Thông tin QR"),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                content: Text("$data"),
+                actions: <Widget>[
+                  FlatButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      _captureController.resume();
+                    },
+                    child: Text("OK", style: TextStyle(color: Colors.blue)),
+                  ),
+                ],
+              ));
     });
   }
 
@@ -120,32 +146,36 @@ class _QRViewPageState extends State<QRView> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.green,
-      body: Stack(
-          alignment: Alignment.center,
-          children: <Widget>[
-            QRCaptureView(controller: _captureController,),
-            Container(
-              height: double.infinity,
-              decoration: ShapeDecoration(
-                shape: QrScannerOverlayShape(
-                  cutOutSize: Platform.isAndroid ? 260 : 280,
-                  borderColor: Colors.green,
-                ),
-              ),
+      body: Stack(alignment: Alignment.center, children: <Widget>[
+        QRCaptureView(
+          controller: _captureController,
+        ),
+        Container(
+          height: double.infinity,
+          decoration: ShapeDecoration(
+            shape: QrScannerOverlayShape(
+              cutOutSize: Platform.isAndroid ? 260 : 280,
+              borderColor: Colors.green,
             ),
-            Positioned(
-              top: 55.0,
-              left: 15.0,
-              child: GestureDetector(
-                child: Icon(Icons.arrow_back, color: Colors.white, size: 30,),
-                onTap: () => Navigator.of(context).pop(),
-              ),
+          ),
+        ),
+        Positioned(
+          top: 55.0,
+          left: 15.0,
+          child: GestureDetector(
+            child: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+              size: 30,
             ),
-            Positioned(
-              bottom: 25.0,
-              child: _buildToolBar(),
-            )
-          ]),
+            onTap: () => Navigator.of(context).pop(),
+          ),
+        ),
+        Positioned(
+          bottom: 25.0,
+          child: _buildToolBar(),
+        )
+      ]),
     );
   }
 }

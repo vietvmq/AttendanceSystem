@@ -119,11 +119,11 @@ class Contact extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                        child: Center(child: Text("2/2 Phùng Văn Cung, P.7, Q. Phú Nhuận, TP. Hồ Chí Minh",style: GoogleFonts.farro(fontSize: 16))),
+                        child: Center(child: Text("41, Lê Bình, Phường 4, Quận Tân Bình, TP. Hồ Chí Minh",style: GoogleFonts.farro(fontSize: 16))),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                        child: Center(child: Image.asset("images/mail-arrow.png")),
+                        child: Center(child: Image.asset("images/phone-arrow.png")),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
@@ -135,7 +135,7 @@ class Contact extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                        child: Center(child: Image.asset("images/phone-arrow.png")),
+                        child: Center(child: Image.asset("images/mail-arrow.png")),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
